@@ -10,7 +10,7 @@ import os
 @udf(IntegerType())
 def hasDocumentUdf(product_id: str):
     try:
-        lambda_endpoint = "https://d5orpj61l5.execute-api.us-east-1.amazonaws.com/default/mongodb-record-checker"
+        lambda_endpoint = os.getenv("LAMBDA_ENDPOINT")
         response = requests.get(lambda_endpoint, params={"product_id": product_id})
         if response.status_code == 200:
             result = response.json().get("isexists")
