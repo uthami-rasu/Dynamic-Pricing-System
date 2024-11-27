@@ -1,0 +1,7 @@
+# Ignore .env files (environment variables)
+.env
+
+# Other common ignores
+*.log
+*.pyc
+__pycache__/
