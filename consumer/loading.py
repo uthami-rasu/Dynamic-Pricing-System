@@ -7,12 +7,19 @@ from pyspark.sql.window import Window
 from pyspark.sql.functions import * 
 from utils.custom_logging import Logger ,createOrGetLogger
 
-
+# Load environment variables from a .env file to configure the application
 load_dotenv() 
+
+# Create or get an existing Spark session to interact with Spark
 spark = createOrGetSparkSession() 
-logger = createOrGetLogger("Stream-Application")
+
+# Set up logging for tracking the application's streaming operations
+logger = createOrGetLogger("Stream-Application") 
 
 def update_versioning(batch_df):
+    """
+    Adds or updates the version number for each product in the batch DataFrame.
+    """
     windowSpec = Window.partitionBy('product_id').orderBy('arrival_time')
     existing_df = (spark.read.format('mongo')
                    .option('uri',os.getenv('MONGO_URI'))
@@ -40,6 +47,9 @@ def update_versioning(batch_df):
     return batch_df
 
 def write_documents(batch_df,batch_id):
+    """
+    Writes the batch DataFrame to MongoDB, including versioning.
+    """
     print("Writing batch:",batch_id)
 
     batch_df = update_versioning(batch_df)
@@ -57,20 +67,27 @@ def write_documents(batch_df,batch_id):
     
 
 def write_into_mongodb(df):
-     
+    """
+    Starts the process of writing streaming data to MongoDB.
+    """
     return df.writeStream.foreachBatch(write_documents).start()
 
 
 
 
 def printBatchData(batch_df, batch_id):
+    """
+    Prints information about the current batch being processed.
+    """
     print("Processing batch:", batch_id)
     #batch_df.printSchema() 
     batch_df.show(truncate=False)
 
 
 def write_into_console(stream_df):
-
+    """
+    Outputs the streaming DataFrame to the console.
+    """
     query = stream_df.writeStream \
     .outputMode("append") \
     .format("console") \
@@ -78,7 +95,5 @@ def write_into_console(stream_df):
     .start()
 
     print("Stream started...")
-    query.awaitTermination() 
+    return query  
 
-
-# print(os.getenv('MONGO_URI'))
