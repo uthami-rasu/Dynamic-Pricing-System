@@ -1,6 +1,3 @@
-Here’s the updated **README.md** file based on your structure:  
-
----
 
 # Dynamic Pricing System for E-Commerce Products  
 
