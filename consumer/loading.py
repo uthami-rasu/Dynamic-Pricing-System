@@ -16,6 +16,7 @@ spark = createOrGetSparkSession()
 # Set up logging for tracking the application's streaming operations
 logger = createOrGetLogger("Stream-Application") 
 
+
 def update_versioning(batch_df):
     """
     Adds or updates the version number for each product in the batch DataFrame.
@@ -58,6 +59,7 @@ def write_documents(batch_df,batch_id):
         ).show(truncate=False)
     logger.debug("Function 'write_into_mongodb' running. Writes data into mongodb")
 
+
     batch_df.write.format("mongo")\
         .option('uri',os.getenv('MONGO_URI'))\
         .option('database','Products')\
@@ -70,7 +72,9 @@ def write_into_mongodb(df):
     """
     Starts the process of writing streaming data to MongoDB.
     """
-    return df.writeStream.foreachBatch(write_documents).start()
+    return df.writeStream.foreachBatch(write_documents)\
+        .option('checkpointLocation',os.getenv('CHECK_POINT_LOCATION'))\
+        .start()
 
 
 

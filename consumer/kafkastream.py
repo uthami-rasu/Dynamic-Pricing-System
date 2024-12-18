@@ -16,7 +16,7 @@ spark = createOrGetSparkSession()
 logger = createOrGetLogger("Stream-Application") 
 
 # Retrieve the Kafka server address from the environment variables
-kafka_server = os.getenv("KAFKA_SERVERS")
+kafka_brokers = os.getenv("KAFKA_BROKERS")
 
 def read_kafka_topic():
     """
@@ -36,7 +36,7 @@ def read_kafka_topic():
     # Kafka stream
     product_df = (
         spark.readStream.format("kafka")
-        .option("kafka.bootstrap.servers", kafka_server)
+        .option("kafka.bootstrap.servers", kafka_brokers)
         .option("subscribe", kafka_topic)
         .load()
     )
