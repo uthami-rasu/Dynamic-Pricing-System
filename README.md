@@ -20,7 +20,7 @@ This project is a **Dynamic Pricing System** designed for e-commerce platforms. 
 - **Power BI**: Data visualization and reporting.  
 ---
 ## System Workflow 
-![ER Diagram](https://github.com/Razzkutty/S3-to-Snowflake-ETL-Pipeline/blob/main/Diagrams/ER%20Diagram.png)
+![ER Diagram](https://raw.githubusercontent.com/uthami-rasu/Dynamic-Pricing-System/refs/heads/main/Diagram/System%20Architecture.png)
 
 
 ---
@@ -63,7 +63,7 @@ The system follows these steps to process and manage dynamic pricing:
 - **Stock Analysis**: Monitor stock levels and their impact on pricing.  
 - **Event Analysis**: Understand pricing dynamics during holidays and promotions.  
 
-![ER Diagram](https://github.com/Razzkutty/S3-to-Snowflake-ETL-Pipeline/blob/main/Diagrams/ER%20Diagram.png)
+![ER Diagram](https://raw.githubusercontent.com/uthami-rasu/Dynamic-Pricing-System/refs/heads/main/Diagram/Insights.png)
 
 ---
 
