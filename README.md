@@ -1,82 +1,79 @@
-
-# **Dynamic Pricing System for E-Commerce**
-
-## **Overview**
-
-This project implements a **Dynamic Pricing System** for e-commerce products using Apache Kafka, Apache Spark, and MongoDB. The system listens to product price data from Kafka, processes it in real-time with Spark Streaming, and stores the processed data (including pricing adjustments) in MongoDB. It also includes functionality for generating fake product data for testing and simulating real-time price adjustments based on various factors like competitor price, stock levels, and holidays.
+Here’s the updated **README.md** file based on your structure:  
 
 ---
 
-## **Technologies Used**
+# Dynamic Pricing System for E-Commerce Products  
 
-- **Apache Kafka**: For message brokering.
-- **Apache Spark**: For real-time stream processing (Spark Streaming).
-- **MongoDB**: For storing the processed pricing data.
-- **Python**: Programming language for building the application.
+## Overview  
+This project is a **Dynamic Pricing System** designed for e-commerce platforms. The system dynamically adjusts product prices in real-time based on data such as competitor pricing, stock levels, and external events (e.g., holidays). It ensures timely and informed price adjustments, helping businesses maintain a competitive edge while optimizing profits.  
+
+## Objective  
+- To build an end-to-end system that processes data in real-time and dynamically adjusts product prices.  
+- To automate and orchestrate workflows for seamless execution.  
+- To visualize pricing trends and actionable insights on an interactive dashboard.  
+
+## Tools and Technologies  
+- **Apache Kafka**: Real-time data ingestion and message brokering.  
+- **Apache Spark Streaming**: Processing and transforming data streams in real-time.  
+- **MongoDB**: Storing processed pricing data and maintaining historical records.  
+- **Apache Airflow**: Workflow orchestration and automation.  
+- **Power BI**: Data visualization and reporting.  
+---
+## System Workflow 
+![ER Diagram](https://github.com/Razzkutty/S3-to-Snowflake-ETL-Pipeline/blob/main/Diagrams/ER%20Diagram.png)
+
 
 ---
 
-## **System Architecture**
+## System Workflow  
+The system follows these steps to process and manage dynamic pricing:  
 
-1. **Kafka Producer**: Generates fake product data and sends it to the `prouducts_topic` Kafka topic.
-2. **Kafka Consumer**: Consumes messages from the Kafka topic in real-time and processes them using Spark Streaming.
-3. **Spark Streaming**: Processes data in real-time, performs various transformations (e.g., calculating new price, checking holidays/weekends), and stores the data in MongoDB.
-4. **MongoDB**: Stores the processed product data including pricing history and versioning.
+### Step 1: Data Generation and Ingestion  
+- A **Kafka Producer** simulates product data, including product ID, competitor prices, stock levels, and special event indicators.  
+- The data is published to a Kafka topic (`products`).  
 
+### Step 2: Real-time Data Processing  
+- **Apache Spark Streaming** consumes data from the Kafka topic in real-time.  
+- The streaming data is cleaned, transformed, and enriched with computed fields (e.g., adjusted price, metadata).  
 
+### Step 3: Data Storage  
+- The processed pricing data is stored in **MongoDB**, ensuring a complete historical record of price changes for auditing and analysis.  
 
-## Spark & Kafka Streaming Workflow 
+### Step 4: Workflow Orchestration  
+- **Apache Airflow** orchestrates the pipeline, automating tasks such as data ingestion, real-time processing, and storage.  
+- Airflow ensures smooth end-to-end execution with built-in monitoring and alerts.  
 
-![Workflow](https://raw.githubusercontent.com/uthami-rasu/Spark-Stream-Processing/refs/heads/main/utils/Workflow%20Diagram.png)
+### Step 5: Data Visualization  
+- Processed data is consumed by **Power BI**, where a dashboard displays:  
+  - Real-time pricing trends.  
+  - Competitor price comparisons. 
 
 ---
 
-## **Features**
+## Outcome and Dashboard  
+### Outcome  
+- A fully functional system capable of real-time data processing and dynamic pricing.  
+- Historical data stored in MongoDB for insights and audits.  
+- Interactive dashboards that empower stakeholders to make data-driven decisions.  
 
-- **Kafka Producer**: Generates fake product data with attributes such as product ID, base price, competitor price, stock level, and sales rate.
-- **Dynamic Pricing Logic**: Adjusts product pricing based on competitor price, stock level, sales rate, and if it's a holiday or weekend.
-- **Versioning**: Each product's pricing history is versioned and updated when new data is processed.
-- **Error Handling and Logging**: Logs key actions and handles exceptions throughout the process.
+
+### Dashboard Features  
+- **Real-time Pricing Trends**: Visualize current prices and trends.  
+- **Competitor Price Comparison**: Compare your prices against competitors in real-time.  
+- **Stock Analysis**: Monitor stock levels and their impact on pricing.  
+- **Event Analysis**: Understand pricing dynamics during holidays and promotions.  
+
+![ER Diagram](https://github.com/Razzkutty/S3-to-Snowflake-ETL-Pipeline/blob/main/Diagrams/ER%20Diagram.png)
 
 ---
 
-## **Setup and Installation**
+## Key Learnings  
+- Enhanced understanding of **Apache Kafka** and its role in real-time data ingestion.  
+- Developed expertise in **Spark Streaming** for real-time data transformation.  
+- Learned to design and query **MongoDB** for managing dynamic data.  
+- Leveraged **Apache Airflow** to automate and orchestrate data workflows efficiently.  
+- Built interactive dashboards in **Power BI** for actionable insights.  
 
-### Prerequisites
-
-- **Python 3.8+**
-- **Apache Kafka**: For message brokering. Ensure Kafka is up and running.
-- **Apache Spark**: Ensure Spark is properly set up with the necessary connectors (Kafka and MongoDB).
-- **MongoDB**: Ensure MongoDB is running and accessible.
-- **Python Libraries**: All the necessary libraries are listed in `requirements.txt`.
-
-### Installation Steps
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/your-repo/dynamic-pricing.git
-   cd dynamic-pricing
-   ```
-
-2. **Create a virtual environment**:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   ```
-
-3. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Set up environment variables**:
-   Create a `.env` file in the root directory with the following content:
-   ```dotenv
-   KAFKA_SERVERS=your_kafka_server
-   MONGO_URI=your_mongo_uri
-   LAMBDA_ENDPOINT=your_lambda_endpoint
-   ```
----
-
-
-
+--- 
+## Contact
+For questions or collaboration, please reach out at uthamirasuv@gmail.com.
