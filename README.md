@@ -16,13 +16,13 @@ This project is a **Dynamic Pricing System** designed for e-commerce platforms. 
 - **Apache Airflow**: Workflow orchestration and automation.  
 - **Power BI**: Data visualization and reporting.  
 ---
-## System Workflow 
+## System Workflow Diagram
 ![ER Diagram](https://raw.githubusercontent.com/uthami-rasu/Dynamic-Pricing-System/refs/heads/main/Diagram/System%20Architecture.png)
 
 
 ---
 
-## System Workflow  
+## System Workflow Steps
 The system follows these steps to process and manage dynamic pricing:  
 
 ### Step 1: Data Generation and Ingestion  
